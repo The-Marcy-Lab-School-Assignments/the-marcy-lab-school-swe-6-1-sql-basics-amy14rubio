@@ -16,67 +16,69 @@
 -- ============================================================
 
 -- 1. Select all columns from all books.
-
+SELECT * FROM books;
 
 -- 2. Select only the title and author for all books.
-
+SELECT title, author FROM books;
 
 -- 3. Select the title, author, and rating for all books.
-
+SELECT title, author, rating FROM books;
 
 -- ============================================================
 -- Part 2: WHERE — Filtering Data
 -- ============================================================
 
 -- 4. Select all books in the 'sci-fi' genre.
-
+SELECT * FROM books WHERE genre = 'sci-fi';
 
 -- 5. Select all books published after the year 2000.
-
+SELECT * FROM books WHERE year > 2000;
 
 -- 6. Select all books with a rating of 9.0 or higher.
-
+SELECT * FROM books WHERE rating > 9;
 
 -- 7. Select all books that are currently available.
-
+SELECT * FROM books WHERE available = 't';
 
 -- 8. Select all books that are currently unavailable.
-
+SELECT * FROM books WHERE available = 'f';
 
 -- 9. Select all books published before 1970.
-
+SELECT * FROM books WHERE year < 1978;
 
 -- 10. Select all 'sci-fi' books with a rating above 9.4.
-
+SELECT * FROM books WHERE genre = 'sci-fi' AND rating > 9.4;
 
 -- 11. Select all books in the 'fantasy' or 'mystery' genre.
-
+SELECT * FROM books WHERE genre = 'fantasy' OR genre = 'mystery';
 
 -- ============================================================
 -- Part 3: ORDER BY & LIMIT — Sorting and Slicing
 -- ============================================================
 
 -- 12. Select all books, ordered by rating from highest to lowest.
-
+SELECT * FROM books ORDER BY rating DESC;
 
 -- 13. Select all books, ordered by year from oldest to newest.
-
+SELECT * FROM books ORDER BY year DESC;
 
 -- 14. Select the 5 highest-rated books.
-
+SELECT * FROM books ORDER BY rating DESC LIMIT 5;
 
 -- 15. Select the 3 most recently published books.
-
+SELECT * FROM books ORDER BY year DESC LIMIT 3;
 
 -- 16. Select all 'fiction' books, ordered by year from oldest to newest.
-
+SELECT * FROM books ORDER BY year ASC;
 
 -- 17. Select all available books with a rating of 9.0 or higher,
 --     ordered by rating from highest to lowest.
-
+SELECT * FROM books 
+WHERE rating > 9 
+ORDER BY rating DESC;
 
 -- 18. Select the title and genre of the 3 oldest books.
-
+SELECT title, genre FROM books ORDER BY year ASC LIMIT 3;
 
 -- ============================================================
 -- Part 4: INSERT — Creating Data
@@ -85,10 +87,10 @@
 -- 19. Insert a new book of your choice into the books table.
 --     Include: title, author, genre, year, rating.
 --     (available defaults to TRUE if not provided)
-
+INSERT INTO books (title, author, genre, year, rating) VALUES ('title', 'author', 'genre', 2026, 9.5);
 
 -- 20. Select all books to verify your insert.
-
+SELECT * FROM books;
 
 -- ============================================================
 -- Part 5: UPDATE — Modifying Data
@@ -96,16 +98,17 @@
 
 -- 21. Mark the book you inserted in #19 as unavailable.
 --     Use its book_id to target it specifically.
-
+UPDATE books SET available = 'f' WHERE book_id = 13;
 
 -- 22. Update the rating of 'Project Hail Mary' to 9.7.
-
+UPDATE books SET rating = '9.7' WHERE title = 'Project Hail Mary';
 
 -- ============================================================
 -- Part 6: DELETE — Removing Data
 -- ============================================================
 
 -- 23. Delete the book with book_id = 5.
-
+DELETE FROM books WHERE book_id = 5;
 
 -- 24. Select all books to verify the deletion.
+SELECT * FROM books;
